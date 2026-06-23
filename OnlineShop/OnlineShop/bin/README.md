@@ -77,17 +77,11 @@ Es werden keine externen Frameworks verwendet.
 
 Die Anwendung verfügt über eine grafische Benutzeroberfläche, die die Anmeldung, Registrierung und Nutzung des Online-Shops ermöglicht.
 
-### Kundenanmeldung
+### Anmeldung 
 
-![Login Kunde](images/loginkunde.png)
+![Login Kunde](images/einloggen.png)
 
-Über dieses Fenster können sich registrierte Kunden am System anmelden.
-
-### Mitarbeiteranmeldung
-
-![Login Mitarbeiter](images/loginmitarbeiter.png)
-
-Mitarbeiter können sich über eine separate Anmeldemaske anmelden und auf die Verwaltungsfunktionen des Systems zugreifen.
+Über dieses Fenster können sich registrierte Kunden oder Mitarbeiter am System anmelden. Mitarbeiter können nur von einem Mitarbeiter hinzugefügt werden. Kunden können sich selbst registrieren.
 
 ### Registrierung
 
@@ -95,11 +89,17 @@ Mitarbeiter können sich über eine separate Anmeldemaske anmelden und auf die V
 
 Neue Kunden können über das Registrierungsformular einen Benutzeraccount erstellen.
 
-### Hauptansicht nach erfolgreicher Anmeldung
+### Hauptansicht nach erfolgreicher Anmeldung Kunde
 
-![Eingeloggt](images/einloggen.png)
+![Login Mitarbeiter](images/loginkunde.png)
 
-Nach erfolgreicher Anmeldung erhält der Benutzer Zugriff auf die Funktionen des Online-Shops.  
+Nach erfolgreicher Anmeldung erhält der Kunde Zugriff auf die Funktionen des Online-Shops.  
+
+### Hauptansicht nach erfolgreicher Anmeldung Mitarbeiter
+
+![Eingeloggt](images/loginmitarbeiter.png)
+
+Nach erfolgreicher Anmeldung erhält der Mitarbeiter Zugriff auf die Funktionen des Online-Shops und kann auch Mitarbeiter hinzufügen.  
 
 ## Projektstruktur
 
