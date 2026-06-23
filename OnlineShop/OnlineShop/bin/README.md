@@ -69,22 +69,8 @@ Es werden hauptsächlich Standardbibliotheken von Java verwendet:
 
 Es werden keine externen Frameworks verwendet.
 
-## Projektstruktur
 
-```text
-src/
-└── shop/
-    └── local/
-        ├── domain/
-        │   ├── Logik
-        │   └── exceptions/
-        ├── persistence/
-        │   └── Dateibasierte Datenhaltung
-        ├── ui/
-        │   ├── cui/
-        │   └── gui/
-        └── valueObjects/
-            └── Datenklassen wie Artikel, Kunde, Mitarbeiter, Warenkorb
+                       
             
             
 ## Benutzeroberfläche
@@ -111,6 +97,24 @@ Neue Kunden können über das Registrierungsformular einen Benutzeraccount erste
 
 ### Hauptansicht nach erfolgreicher Anmeldung
 
-![Eingeloggt](images/eingeloggt.png)
+![Eingeloggt](images/einloggen.png)
 
-Nach erfolgreicher Anmeldung erhält der Benutzer Zugriff auf die Funktionen des Online-Shops.            
+Nach erfolgreicher Anmeldung erhält der Benutzer Zugriff auf die Funktionen des Online-Shops.  
+
+## Projektstruktur
+
+```text
+src/
+└── shop/
+    └── local/
+        ├── domain/
+        │   ├── Logik
+        │   └── exceptions/
+        ├── persistence/
+        │   └── Dateibasierte Datenhaltung
+        ├── ui/
+        │   ├── cui/
+        │   └── gui/
+        └── valueObjects/
+            └── Datenklassen wie Artikel, Kunde, Mitarbeiter, Warenkorb
+```           
