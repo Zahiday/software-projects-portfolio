@@ -1,0 +1,15 @@
+{
+  "name": "mein-projekt-manager",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ein einfach startbares Full-Stack Portfolio-Projekt: Projekt- und Task-Manager mit React, Express und JSON-Datei-Datenbank.",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "test": "npm test --prefix backend",
+    "build": "npm run build --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
