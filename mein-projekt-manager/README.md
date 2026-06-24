@@ -288,3 +288,5 @@ npm test
 ### Dashboard
 
 ![Dashboard](./images/dashboard.png)
+
+![Dashboard](./images/dashboard2.png)
