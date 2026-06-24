@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"shop.local.ui.gui","l":"AngemeldetAlsMitarbeiter"}]
