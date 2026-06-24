@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+
+<title>Denmark Cumulus Prediction Center</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+    padding: 15px;
+}
+
+.box {
+    width: 95%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+th {
+    background: #f8f9fa;
+}
+
+tr:hover {
+    background: #f1f5f9;
+    cursor: pointer;
+}
+
+.active {
+    background: #dff0ff !important;
+}
+
+.coord-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-family: monospace;
+}
+
+.lat { color: #2980b9; font-weight: bold; }
+.lon { color: #16a085; font-weight: bold; }
+
+.bar-container {
+    background: #ddd;
+    height: 12px;
+    width: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.bar { height: 100%; }
+
+.bar-confirmed { background: #e74c3c; }
+.bar-potential { background: #f39c12; }
+.bar-stable { background: #3498db; }
+
+.confirmed { color: #e74c3c; font-weight: bold; }
+.potential { color: #f39c12; font-weight: bold; }
+.stable { color: #7f8c8d; }
+
+.nodata {
+    color: #aaa;
+    font-style: italic;
+}
+
+#map {
+    width: 40%;
+    height: 80vh;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h3 style="margin:0 0 10px 0;">
+    Live Formation Matrix & Telemetry
+</h3>
+
+<div style="display:flex; gap:15px;">
+
+<div style="width:60%; max-height:80vh; overflow:auto;">
+
+<table>
+<thead>
+<tr>
+    <th>Station</th>
+    <th>GPS</th>
+    <th>Atmosphere</th>
+    <th>Wind</th>
+    <th>Probability</th>
+    <th>Status</th>
+</tr>
+</thead>
+
+<tbody>
+{% for s in data %}
+<tr class="station-row"
+    data-name="{{ s.name }}"
+    data-lat="{{ s.lat }}"
+    data-lon="{{ s.lon }}">
+
+<td><b>{{ s.name }}</b> ({{ s.region }})</td>
+
+<td>
+    <div class="coord-box">
+        <span class="lat">LAT {{ s.lat }}</span>
+        <span class="lon">LON {{ s.lon }}</span>
+    </div>
+</td>
+
+<td>
+    {% if s.temp is not none %}{{ s.temp }}°C{% else %}N/A{% endif %} |
+    {% if s.press is not none %}{{ s.press }} hPa{% else %}N/A{% endif %} |
+    {% if s.hum is not none %}{{ s.hum }}%{% else %}N/A{% endif %}
+</td>
+
+<td>
+    {% if s.wind is not none %}
+        {{ s.wind }} m/s
+    {% else %}
+        <span class="nodata">N/A</span>
+    {% endif %}
+</td>
+
+<td>
+    <div class="bar-container">
+        <div class="bar
+            {% if s.prob >= 75 %}bar-confirmed
+            {% elif s.prob >= 45 %}bar-potential
+            {% else %}bar-stable{% endif %}"
+            style="width:{{ s.prob }}%">
+        </div>
+    </div>
+    <b>{{ s.prob }}%</b>
+</td>
+
+<td>
+    {% if s.status == "Formed" %}
+        <span class="confirmed">Formed</span>
+    {% elif s.status == "Potential" %}
+        <span class="potential">Potential</span>
+    {% else %}
+        <span class="stable">Stable</span>
+    {% endif %}
+</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+</div>
+
+<div id="map"></div>
+
+</div>
+</div>
+
+<script>
+
+const map = L.map('map').setView([56, 10], 6);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+const stations = {{ data | tojson }};
+const markers = {};
+
+function getColor(status) {
+    if (status === "Formed") return "#e74c3c";
+    if (status === "Potential") return "#f39c12";
+    return "#3498db";
+}
+
+stations.forEach(s => {
+
+    const color = getColor(s.status);
+
+    const marker = L.circleMarker([s.lat, s.lon], {
+        radius: 8,
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.85,
+        weight: 2
+    }).addTo(map);
+
+    marker.bindPopup(`
+        <b>${s.name}</b><br>
+        Temp: ${s.temp ?? 'N/A'}°C<br>
+        Wind: ${s.wind ?? 'N/A'} m/s<br>
+        Status: ${s.status}
+    `);
+
+    markers[s.name] = marker;
+});
+
+document.querySelectorAll(".station-row").forEach(row => {
+    row.addEventListener("click", () => {
+
+        const name = row.dataset.name;
+        const lat = parseFloat(row.dataset.lat);
+        const lon = parseFloat(row.dataset.lon);
+
+        map.setView([lat, lon], 8);
+
+        if (markers[name]) {
+            markers[name].openPopup();
+        }
+
+        document.querySelectorAll(".station-row").forEach(r => {
+            r.classList.toggle("active", r.dataset.name === name);
+        });
+    });
+});
+
+
+
+if (!sessionStorage.getItem("initial_reload_done")) {
+
+    sessionStorage.setItem("initial_reload_done", "1");
+
+    setTimeout(() => {
+        location.reload();
+    }, 2000);
+}
+
+
+
+let lastUpdate = {{ last_update|default(0) }};
+
+setInterval(async () => {
+
+    try {
+        const res = await fetch("/debug");
+        const data = await res.json();
+
+        if (data.last_update > lastUpdate) {
+            location.reload();
+        }
+
+    } catch (e) {
+        console.error(e);
+    }
+
+}, 30000);
+
+</script>
+
+</body>
+</html>

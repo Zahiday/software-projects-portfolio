@@ -1,0 +1,22 @@
+DK_STATIONS = [
+    {"station_id": "06180", "name": "Copenhagen (Capital)", "lat": 55.6761, "lon": 12.5683, "region": "Zealand"},
+    {"station_id": "06074", "name": "Aarhus (Midtjylland)", "lat": 56.1567, "lon": 10.2108, "region": "Jutland"},
+    {"station_id": "06120", "name": "Odense (Syddanmark)", "lat": 55.4038, "lon": 10.4024, "region": "Funen"},
+    {"station_id": "06030", "name": "Aalborg (Nordjylland)", "lat": 57.0488, "lon": 9.9217, "region": "Jutland"},
+    {"station_id": "06080", "name": "Esbjerg (West Coast)", "lat": 55.4765, "lon": 8.4516, "region": "Jutland"},
+    {"station_id": "06041", "name": "Skagen (North Tip)", "lat": 57.7209, "lon": 10.5838, "region": "Jutland"},
+    {"station_id": "06193", "name": "Ronne (Bornholm)", "lat": 55.1009, "lon": 14.7066, "region": "Bornholm"},
+    {"station_id": "06170", "name": "Roskilde", "lat": 55.6419, "lon": 12.0878, "region": "Zealand"},
+    {"station_id": "06184", "name": "Helsingor (North Zealand)", "lat": 56.0360, "lon": 12.6136, "region": "Zealand"},
+    {"name": "Kolding", "lat": 55.4913, "lon": 9.4722, "region": "Jutland"},
+    {"name": "Vejle", "lat": 55.7090, "lon": 9.5351, "region": "Jutland"},
+    {"name": "Herning", "lat": 56.1393, "lon": 8.9738, "region": "Jutland"},
+    {"name": "Randers", "lat": 56.4607, "lon": 10.0357, "region": "Jutland"},
+    {"name": "Silkeborg", "lat": 56.1697, "lon": 9.5451, "region": "Jutland"},
+    {"name": "Viborg", "lat": 56.4534, "lon": 9.4121, "region": "Jutland"},
+    {"name": "Fredericia", "lat": 55.5642, "lon": 9.7562, "region": "Jutland"},
+    {"name": "Slagelse", "lat": 55.4028, "lon": 11.3546, "region": "Zealand"},
+    {"name": "Naestved", "lat": 55.2328, "lon": 11.7593, "region": "Zealand"},
+    {"name": "Nykobing Falster", "lat": 54.7686, "lon": 11.8761, "region": "Falster"},
+    {"name": "Gedser (South Tip)", "lat": 54.5739, "lon": 11.9331, "region": "Falster"}
+]
