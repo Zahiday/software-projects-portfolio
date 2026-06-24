@@ -69,6 +69,39 @@ Es werden hauptsächlich Standardbibliotheken von Java verwendet:
 
 Es werden keine externen Frameworks verwendet.
 
+
+
+## Benutzeroberfläche
+
+Die Anwendung verfügt über eine grafische Benutzeroberfläche für Kunden und Mitarbeiter. Nach dem Start der Anwendung gelangt der Benutzer zunächst auf die Anmeldeseite.
+
+## Startseite / Anmeldung
+
+![Anmeldung](images/einloggen.png)
+
+Auf der Startseite können sich Kunden anmelden, Mitarbeiter anmelden oder neue Kunden registrieren.
+
+## Registrierung
+
+![Registrierung](images/registrieren.png)
+
+Neue Kunden können über das Registrierungsformular einen Benutzeraccount erstellen.
+
+## Kundenbereich
+
+![Login Kunde](images/loginkunde.png)
+
+Nach erfolgreicher Anmeldung erhält der Kunde Zugriff auf die Funktionen des Online-Shops.
+
+## Mitarbeiterbereich
+
+![Login Mitarbeiter](images/loginmitarbeiter.png)
+
+Mitarbeiter können sich über die Anmeldeseite im System anmelden und auf die Verwaltungsfunktionen des Online-Shops zugreifen. Darüber hinaus haben sie die Möglichkeit, weitere Mitarbeiterkonten anzulegen und zu verwalten.
+
+
+
+
 ## Projektstruktur
 
 ```text
@@ -87,30 +120,4 @@ src/
             └── Datenklassen wie Artikel, Kunde, Mitarbeiter, Warenkorb
             
             
-## Benutzeroberfläche
-
-Die Anwendung verfügt über eine grafische Benutzeroberfläche, die die Anmeldung, Registrierung und Nutzung des Online-Shops ermöglicht.
-
-### Kundenanmeldung
-
-![Login Kunde](images/loginkunde.png)
-
-Über dieses Fenster können sich registrierte Kunden am System anmelden.
-
-### Mitarbeiteranmeldung
-
-![Login Mitarbeiter](images/loginmitarbeiter.png)
-
-Mitarbeiter können sich über eine separate Anmeldemaske anmelden und auf die Verwaltungsfunktionen des Systems zugreifen.
-
-### Registrierung
-
-![Registrierung](images/registrieren.png)
-
-Neue Kunden können über das Registrierungsformular einen Benutzeraccount erstellen.
-
-### Hauptansicht nach erfolgreicher Anmeldung
-
-![Eingeloggt](images/eingeloggt.png)
-
-Nach erfolgreicher Anmeldung erhält der Benutzer Zugriff auf die Funktionen des Online-Shops.            
+           
